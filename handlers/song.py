@@ -1,4 +1,4 @@
-# Telegramda yani ben boş işler müdürü :) <> @BOT_RAMO Tarafından düzenlenen ufak çaplı proje. 
+# Telegramda yani ben boş işler müdürü :) <> @Kardomm Tarafından düzenlenen ufak çaplı proje. 
 import os
 import requests
 import aiohttp
@@ -18,7 +18,7 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(command(["bul"]))
+@Client.on_message(command(["ara"]))
 def bul(client, message):
 
     user_id = message.from_user.id
@@ -27,7 +27,7 @@ def bul(client, message):
 
     query = "".join(" " + str(i) for i in message.command[1:])
     print(query)
-    m = message.reply("•> **Arıyorum...**")
+    m = message.reply("•> Arıyorum...")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=5).to_dict()
@@ -45,17 +45,17 @@ def bul(client, message):
 
     except Exception as e:
         m.edit(
-            "•> **Hiçbir şey bulamadım .**"
+            "•> Üzgünüm Bir Şey Bulamadım ."
         )
         print(str(e))
         return
-    m.edit("•> **Şarkı indiriliyor .**")
+    m.edit("•> Şarkıyı İndiriyorum .")
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = f"▶️ **Şarkı**: [{title[:35]}]({link})\n⏳ **Süre**: `{duration}`\n•> [Ballas 𝖬𝗎𝗓𝗂𝗄 𝖡𝗈𝗍](https://t.me/Ballasresmi) 𝖳𝖺𝗋𝖺𝖿𝗂𝗇𝖽𝖺𝗇 !"
+        rep = f"▶️ Başlık: [{title[:35]}]({link})\n⏳ Süre: {duration}\n•> [Sahip](https://t.me/Master_lockee) Arşivinden Alındı !"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -70,7 +70,7 @@ def bul(client, message):
         )
         m.delete()
     except Exception as e:
-        m.edit("❌ Error")
+        m.edit(" ❌ Hata)
         print(e)
 
     try:
@@ -107,14 +107,14 @@ async def vsong(client, message):
     except Exception as e:
         print(e)
     try:
-        msg = await message.reply("•> **Video İndiriyorum...**")
+        msg = await message.reply("•> Video İndiriyorum...")
         with YoutubeDL(ydl_opts) as ytdl:
             ytdl_data = ytdl.extract_info(link, download=True)
             file_name = ytdl.prepare_filename(ytdl_data)
     except Exception as e:
-        return await msg.edit(f"🚫 **Hata:** {e}")
+        return await msg.edit(f"🚫 Hata: {e}")
     preview = wget.download(thumbnail)
-    await msg.edit("•> **Video Yüklüyorum...**")
+    await msg.edit("•> Video Yüklüyorum...")
     await message.reply_video(
         file_name,
         duration=int(ytdl_data["duration"]),
