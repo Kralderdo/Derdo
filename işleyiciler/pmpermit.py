@@ -18,7 +18,7 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                "**Merhaba, Müzik asistanı hizmetidir**.\n [🧑🏻‍💻 Developer](https://t.me/BOT_RAMO)\n",
+                "Merhaba, Ben Falş Müzik Asistan .\n [👤Sahipler](https://t.me/murtibotslog/52)\n",
             )
             return
  
@@ -44,7 +44,7 @@ async def autopmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
     if not chat_id in pchats:
         pchats.append(chat_id)
-        await message.reply_text("**Hey Userbot Yazışması artık başarılı.**")
+        await message.reply_text("Hey Userbot Yazışması artık başarılı.")
         return
     message.continue_propagation()    
     
