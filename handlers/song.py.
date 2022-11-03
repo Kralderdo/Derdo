@@ -68,7 +68,6 @@ def bul(client, message):
             title=title,
             duration=dur,
         )
-        m.delete()
     except Exception as e:
         m.edit("❌ Error")
         print(e)
